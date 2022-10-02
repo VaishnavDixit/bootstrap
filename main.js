@@ -17,20 +17,20 @@ class Record {//template for each record
 
 // reading data to add in the table
 function readData() {
-	let todo = document.getElementById("todoId").value;
-	let date = document.getElementById("dateId").value;
+	const todo = document.getElementById("todoId").value;
+	const date = document.getElementById("dateId").value;
 	let status = "";
-	let isPending = document.getElementById("pendingRadioId");
-	let isSuccess = document.getElementById("successRadioId");
-	let isRejected = document.getElementById("rejectedRadioId");
+	const isPending = document.getElementById("pendingRadioId");
+	const isSuccess = document.getElementById("successRadioId");
+	const isRejected = document.getElementById("rejectedRadioId");
 
-	if (isPending.checked === true) {
+	if (isPending.checked === true) 
 		status = 1;
-	} else if (isSuccess.checked === true) {
+	else if (isSuccess.checked === true) 
 		status = 2;
-	} else if (isRejected.checked === true) {
+	else if (isRejected.checked === true) 
 		status = 3;
-	}
+	
 	if (todo === "" || date === "") {
 		alert("error! fields are empty.");
 		return;
@@ -103,6 +103,10 @@ function updateData() {
 	console.log("inside update, sel-id= " + selectedId);
 	let todo = document.getElementById("todoEditId").value;
 	let date = document.getElementById("dateEditId").value;
+	if (todo === "" || date === "") {
+		alert("error! fields are empty.");
+		return;
+	}
 	let status = -1;
 	let id = selectedId;
 	let rowColorClass = "";
@@ -146,13 +150,13 @@ function updateData() {
 			console.log(rec);
 			table.rows[i].innerHTML =
 				"<tr>" +
-					"<td>" + id + "</td>" +
-					"<td>" + todo + "</td>" +
-					"<td>" + date + "</td>" +
-					"<td><b>" + statusStr + "</b></td>" +
-					"<td><div class='btn-group'><button class='btn btn-warning btn-sm' onclick='editData(" + id + ");'" +
-					" data-bs-toggle=\"modal\"" + " data-bs-target=\"#modalEditId\"" + "><i class=\"bi-pencil\"></i></button>" +
-					"<button class='btn btn-danger btn-sm' onclick='deleteData(" + id + ");'><i class=\"bi-trash-fill\"></i></button></div></td>" +
+				"<td>" + id + "</td>" +
+				"<td>" + todo + "</td>" +
+				"<td>" + date + "</td>" +
+				"<td><b>" + statusStr + "</b></td>" +
+				"<td><div class='btn-group'><button class='btn btn-warning btn-sm' onclick='editData(" + id + ");'" +
+				" data-bs-toggle=\"modal\"" + " data-bs-target=\"#modalEditId\"" + "><i class=\"bi-pencil\"></i></button>" +
+				"<button class='btn btn-danger btn-sm' onclick='deleteData(" + id + ");'><i class=\"bi-trash-fill\"></i></button></div></td>" +
 				"</tr>";
 			table.rows[i].className = rowColorClass;
 			selectedId = -1;

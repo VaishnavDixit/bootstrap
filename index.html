@@ -13,8 +13,9 @@
 <body>
 	<!-- title and search bar -->
 	<div class="container-fluid mt-3 mb-3">
-		<button type="button" style="display:block; margin:auto;"class="btn btn-primary mb-3" id="addRowId" data-bs-toggle="modal" data-bs-target="#modalId">Add
-			row
+		<button type="button" style="display:block; margin:auto;" class="btn btn-primary btn-lg mb-3" id="addRowId"
+			data-bs-toggle="modal" data-bs-target="#modalId">Add
+			a row
 		</button>
 		<div class="input-group">
 			<input type="text" class="form-control" id="searchTextId">
@@ -42,7 +43,7 @@
 						</div>
 						<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
 							<input type="radio" class="btn-check" name="btnradio" id="pendingRadioId" autocomplete="off"
-								checked>
+								checked required>
 							<label class="btn btn-outline-primary" for="pendingRadioId">Pending</label>
 
 							<input type="radio" class="btn-check" name="btnradio" id="successRadioId"
@@ -104,13 +105,13 @@
 		</div>
 	</div>
 	<!-- table -->
-	<table class="table table-hover table-bordered table-sm" id="tableId">
-		<thead class="table-dark">
-			<th>Id</th>
-			<th>Todo</th>
-			<th>Date</th>
-			<th>Status</th>
-			<th>Action</th>
+	<table class="table table-hover table-bordered table-sm " id="tableId" >
+		<thead class="table-primary">
+			<th><b>Id</b></th>
+			<th><b>Todo</b></th>
+			<th><b>Date</b></th>
+			<th><b>Status</b></th>
+			<th><b>Action</b></th>
 		</thead>
 		<tbody>
 		</tbody>

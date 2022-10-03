@@ -11,7 +11,7 @@
 </head>
 
 <body>
-	<!-- title and search bar -->
+	<!-- add Row btn and search bar -->
 	<div class="container-fluid mt-3 mb-3">
 		<button type="button" style="display:block; margin:auto;" class="btn btn-primary btn-lg mb-3" id="addRowId"
 			data-bs-toggle="modal" data-bs-target="#modalId">Add
@@ -35,7 +35,7 @@
 					<form>
 						<div class="mb-3">
 							<label class="form-label"><b>Todo:</b></label>
-							<input type="text" class="form-control" id="todoId">
+							<textarea type="text" class="form-control" rows="1" id="todoId"></textarea>
 						</div>
 						<div class="mb-3">
 							<label class="form-label"><b>date:</b></label>
@@ -63,7 +63,7 @@
 			</div>
 		</div>
 	</div>
-	<!-- modal for edit -->
+	<!-- modal for updating -->
 	<div class="modal" tabindex="-1" id="modalEditId">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -76,7 +76,7 @@
 					<form>
 						<div class="mb-3">
 							<label class="form-label">todo:</label>
-							<input type="text" class="form-control" id="todoEditId">
+							<textarea type="text" class="form-control" rows="1" id="todoEditId"></textarea>
 						</div>
 						<div class="mb-3">
 							<label class="form-label">date:</label>
@@ -105,7 +105,7 @@
 		</div>
 	</div>
 	<!-- table -->
-	<table class="table table-hover table-bordered table-sm " id="tableId" >
+	<table class="table table-hover table-bordered table-sm " id="tableId">
 		<thead class="table-primary">
 			<th><b>Id</b></th>
 			<th><b>Todo</b></th>

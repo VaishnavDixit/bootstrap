@@ -1,12 +1,16 @@
-const ID_START = 100;
-let counter = 1;
-let selectedId = "", selectedIndex = -1;
-let records = []; // array of all the records
+const ID_START = 100;//to assign new Ids.
+const records = []; // array of all the records
 const table = document.getElementById("tableId");
 const editModal = document.getElementById("modalEditId");
 const addModal = document.getElementById("modalId");
+let selectedId = "", selectedIndex = -1, counter=1;
+/*
+	SelectedIndex=index in the array which is going to be edited. After edit this will be reset to -1.
+	SelectedId=Id of the record in the table which is going to be edited. After edit this will be reset to -1.
+*/
 
-class Record {//template for each record
+class Record {
+	//template for each record
 	constructor(todo, date, status) {
 		this.todo = todo;
 		this.date = date;
@@ -39,12 +43,11 @@ function readData() {
 	document.getElementById("dateId").value = "";
 	let curRecord = new Record(todo, date, status);
 	records.push(curRecord);
-	// push the current record in the table
 	addInTable(curRecord);
 }
-/////////////////////  ///////////////////////////////////////
-/////////////////////  ///////////////////////////////////////
-function addInTable(record) {// record will be added in the table 
+
+// record will be added in the table
+function addInTable(record) { 
 	let id = record.id;
 	let todo = record.todo;
 	let date = record.date;
@@ -63,7 +66,7 @@ function addInTable(record) {// record will be added in the table
 		statusStr = "Rejected";
 		rowColorClass = "table-danger";
 	}
-
+	//Adding record row into the table
 	document
 		.getElementsByTagName("tbody")[0]
 		.innerHTML +=
@@ -76,13 +79,13 @@ function addInTable(record) {// record will be added in the table
 		" data-bs-toggle=\"modal\"" + " data-bs-target=\"#modalEditId\"" + "><i class=\"bi-pencil\"></i></button>" +
 		"<button class='btn btn-danger btn-sm' onclick='deleteData(" + id + ");'><i class=\"bi-trash-fill\"></i></button></div></td>" +
 		"</tr>";
-	//console.table(table);
+	//Adding record into the array
 	table.rows[table.rows.length - 1].className = rowColorClass;
+	console.log("Added!");
 	console.table(records);
-	// modal.classList.remove("hidden")
 }
 
-//edit the record id
+//Updating the modal and initialising selectedId & selectedIndex
 function editData(id) {
 	console.log("edited started on id=" + id);
 	selectedId = id;
@@ -95,12 +98,12 @@ function editData(id) {
 			break;
 		}
 	}
-	console.log("index:" + selectedIndex);
 }
 
-// update the record at the index selectedIndex 
+// update the record with id= selectedId 
 function updateData() { 
 	console.log("inside update, sel-id= " + selectedId);
+	//Reading the info from the modal
 	let todo = document.getElementById("todoEditId").value;
 	let date = document.getElementById("dateEditId").value;
 	if (todo === "" || date === "") {
@@ -109,7 +112,7 @@ function updateData() {
 	}
 	let status = -1;
 	let id = selectedId;
-	let rowColorClass = "";
+	let rowColorClass = "";//to change the row color
 	let isPending = document.getElementById("pendingRadioEditId");
 	let isSuccess = document.getElementById("successRadioEditId");
 	let isRejected = document.getElementById("rejectedRadioEditId");
@@ -136,12 +139,12 @@ function updateData() {
 		rowColorClass = "table-danger";
 	}
 
+	// updating in the array
 	records[selectedIndex].todo = todo;
 	records[selectedIndex].date = date;
-	records[selectedIndex].status = status;
+	records[selectedIndex].status = status; 
 
-	console.table(records);
-
+	//Updating in the list
 	for (let i = 0; i < table.rows.length; i++) {
 		const rec = table.rows[i];
 		console.log("row #" + i + ", id=" + rec.cells[0].innerText);
@@ -164,10 +167,13 @@ function updateData() {
 			break;
 		}
 	}
+	console.log("Updated!");
+	console.table(records);
 }
 
+//To delete record with a given id
 function deleteData(id) {
-	console.log("del"+id);
+	//Deleting from the array
 	for (let i = 0; i < records.length; i++) {
 		let rec = records[i];
 		if (rec.id === id) {
@@ -175,26 +181,28 @@ function deleteData(id) {
 			break;
 		}
 	}
+	//Deleting from the table
 	for (let i = 0; i < table.rows.length; i++) {
 		const rec = table.rows[i];
-		console.log(i+" recdel "+rec.cells[0]);
-
 		if (rec.cells[0].innerText == id.toString()) {
-			console.log(rec);
+			console.log(rec + "deleted.");
 			table.rows[i].remove();
 			break;
 		}
 	}
+	console.log("Deleted!");
+	console.table(records);
 }
 
 function searchData() {
 	let searchStr = document.getElementById("searchTextId").value;
 	document.getElementsByTagName("tbody")[0].innerHTML = "";
+	// Searching in the array 
 	for (let record of records) {
 		let todo = record.todo;
 		if (todo.toLowerCase().includes(searchStr.toLowerCase())) {
-			console.log("found");
-			console.log(record);
+			//if a record in the array fits, add it into the table.
+			console.log(record+"found. Adding to the list.");
 			addInTable(record);
 		}
 	}
